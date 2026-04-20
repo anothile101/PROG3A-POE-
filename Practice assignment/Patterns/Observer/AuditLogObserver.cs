@@ -1,9 +1,6 @@
 ﻿namespace Practice_assignment.Patterns.Observer
 {
-    /// <summary>
-    /// Concrete Observer: writes an audit log entry whenever a contract status changes.
-    /// In production this would write to an audit table or external logging service.
-    /// </summary>
+    // Writes an audit log entry whenever a contract status changes
     public class AuditLogObserver : IContractObserver
     {
             private readonly ILogger<AuditLogObserver> _logger;

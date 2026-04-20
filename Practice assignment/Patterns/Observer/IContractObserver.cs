@@ -2,11 +2,9 @@
 
 namespace Practice_assignment.Patterns.Observer
 {
-    /// <summary>
-    /// Observer Pattern (GoF Behavioural):
-    /// Allows multiple listeners to react to contract status changes
-    /// without the core service needing to know about them (loose coupling).
-    /// </summary>
+    
+    // Observer Pattern: Allows multiple listeners to react to contract status changes without the core service needing to know about them which is know as loose coupling
+   
     public interface IContractObserver
         {
             Task OnContractStatusChangedAsync(ContractStatusChangedEvent contractEvent);
