@@ -3,15 +3,11 @@ using Practice_assignment.Patterns.Repository;
 
 namespace Practice_assignment.Services
 {
-    /// <summary>
-    /// Creates a service request ONLY if the linked contract is Active.
-    /// Rubric criterion 2: Workflow validation — Expired/OnHold contracts are rejected.
-    /// </summary>
     public interface IServiceRequestService
     {
 
-            
-            Task<ServiceRequest> CreateAsync(int contractId, string description, decimal costUsd);
+        //Creates a service request only if the linked contract is active
+        Task<ServiceRequest> CreateAsync(int contractId, string description, decimal costUsd);
 
             Task<IEnumerable<ServiceRequest>> GetByContractAsync(int contractId);
             Task<ServiceRequest?> GetByIdAsync(int id);
@@ -41,13 +37,13 @@ namespace Practice_assignment.Services
                 var contract = await _contractRepo.GetByIdAsync(contractId)
                     ?? throw new KeyNotFoundException($"Contract {contractId} not found.");
 
-                // === WORKFLOW VALIDATION (Rubric requirement) ===
+                // Workflow validation 
                 if (contract.Status == ContractStatus.Expired || contract.Status == ContractStatus.OnHold)
                     throw new InvalidOperationException(
                         $"Service requests cannot be created for a contract with status '{contract.Status}'. " +
                         "Only Active or Draft contracts are allowed.");
 
-                // Currency conversion (Rubric criterion 3)
+                // Currency conversion 
                 var (zarAmount, rate) = await _currencyService.ConvertUsdToZarAsync(costUsd);
 
                 var sr = new ServiceRequest

@@ -5,22 +5,18 @@ using Practice_assignment.Patterns.Repository;
 
 namespace Practice_assignment.Services
 {
-    /// <summary>
-    /// Orchestrates contract business logic.
-    /// Applies the Factory pattern for creation, Observer pattern for status-change events,
-    /// and Repository pattern for data access — all wired via Dependency Injection.
-    /// </summary>
-    public interface IContractService
+    
+    public interface IContractService // Orchestrates contract business logic 
     {
             Task<Contract> CreateContractAsync(int clientId, DateTime startDate, DateTime endDate,
-                string serviceLevel, IFormFile? signedAgreement);
+                string serviceLevel, IFormFile? signedAgreement); // Applies the Factory pattern for creation, observer pattern for status change events
 
-            Task ChangeStatusAsync(int contractId, ContractStatus newStatus);
+        Task ChangeStatusAsync(int contractId, ContractStatus newStatus);
             Task<IEnumerable<Contract>> SearchContractsAsync(DateTime? from, DateTime? to, ContractStatus? status);
         }
 
-        public class ContractService : IContractService
-        {
+        public class ContractService : IContractService //Repository pattern for data access through dependency injection
+    {
             private readonly IContractRepository _contractRepo;
             private readonly IContractFactory _factory;
             private readonly IFileService _fileService;
@@ -45,8 +41,11 @@ namespace Practice_assignment.Services
                 int clientId, DateTime startDate, DateTime endDate,
                 string serviceLevel, IFormFile? signedAgreement)
             {
-                // Use Factory to create the contract with correct defaults
-                var contract = _factory.CreateContract(clientId, startDate, endDate, serviceLevel);
+            if (endDate <= startDate)
+                throw new InvalidOperationException("End date must be after start date.");
+
+            // Use Factory to create the contract with correct defaults
+            var contract = _factory.CreateContract(clientId, startDate, endDate, serviceLevel);
 
                 // Handle file upload if provided
                 if (signedAgreement != null && signedAgreement.Length > 0)

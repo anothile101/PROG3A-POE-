@@ -2,23 +2,22 @@
 {
     public interface ICurrencyService
     {
-            /// <summary>Returns the current USD → ZAR exchange rate.</summary>
+            // Returns the current USD to ZAR exchange rate
             Task<decimal> GetUsdToZarRateAsync();
 
-            /// <summary>Converts a USD amount to ZAR using the live rate.</summary>
-            Task<(decimal zarAmount, decimal rateUsed)> ConvertUsdToZarAsync(decimal usdAmount);
+        // Converts a USD amount to ZAR using the live rate and returns both the converted amount and the rate used for transparency
+        Task<(decimal zarAmount, decimal rateUsed)> ConvertUsdToZarAsync(decimal usdAmount);
         }
 
-        /// <summary>
-        /// Consumes the ExchangeRate-API (https://open.er-api.com) using HttpClient + Async/Await.
-        /// Includes error handling: falls back to a cached/default rate if the API is unreachable.
-        /// Rubric criterion 3: External API integration, HttpClient, Async/Await.
-        /// </summary>
+        
+        /* Consumes the ExchangeRate API (https://open.er-api.com) using HttpClient and Async/Await.
+        Includes error handling which falls back to a cached or default rate if the API is unreachable */
+       
         public class CurrencyService : ICurrencyService
         {
             private readonly HttpClient _httpClient;
             private readonly ILogger<CurrencyService> _logger;
-            private const decimal FallbackRate = 18.50m;   // sensible ZAR fallback
+            private const decimal FallbackRate = 18.50m;   // ZAR fallback
             private const string ApiUrl = "https://open.er-api.com/v6/latest/USD";
 
             public CurrencyService(HttpClient httpClient, ILogger<CurrencyService> logger)
