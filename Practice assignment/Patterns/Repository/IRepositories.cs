@@ -2,14 +2,9 @@
 
 namespace Practice_assignment.Patterns.Repository
 {
-    /// <summary>
-    /// Repository Pattern (GoF Structural / DDD):
-    /// Decouples business logic from data access. Controllers never call DbContext directly.
-    /// This makes the code testable (repositories can be mocked) and maintainable.
-    /// </summary>
-    public interface IContractRepository
+    public interface IContractRepository // Repository pattern decouples business logic from data access, controllers never call DbContext directly
     {
-            Task<IEnumerable<Contract>> GetAllAsync();
+        Task<IEnumerable<Contract>> GetAllAsync();
             Task<IEnumerable<Contract>> SearchAsync(DateTime? fromDate, DateTime? toDate, ContractStatus? status);
             Task<Contract?> GetByIdAsync(int id);
             Task AddAsync(Contract contract);

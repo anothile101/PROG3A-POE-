@@ -16,9 +16,9 @@ namespace Practice_assignment.Patterns.Repository
                     .OrderByDescending(c => c.StartDate)
                     .ToListAsync();
 
-            /// <summary>
-            /// Search/Filter with LINQ (rubric criterion 2): filter by date range and status.
-            /// </summary>
+            
+            // Search filter with LINQ filter by date range and status
+            
             public async Task<IEnumerable<Contract>> SearchAsync(
                 DateTime? fromDate,
                 DateTime? toDate,
