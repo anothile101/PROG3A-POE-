@@ -65,9 +65,9 @@ namespace Practice_assignment.Data
 
                 // Seed data
                 modelBuilder.Entity<Client>().HasData(
-                    new Client { Id = 1, Name = "Global Freight Ltd", ContactDetails = "info@globalfreight.com | +27 31 000 0001", Region = "Africa" },
-                    new Client { Id = 2, Name = "Euro Cargo GmbH", ContactDetails = "contact@eurocargo.de | +49 30 000 0002", Region = "Europe" },
-                    new Client { Id = 3, Name = "Pacific Shipping Co", ContactDetails = "ops@pacshipping.com | +1 310 000 0003", Region = "Americas" }
+                    new Client { Id = 1, Name = "Global Heights Ltd", ContactDetails = "info@globalheights.com | +27 31 000 0001", Region = "Africa" },
+                    new Client { Id = 2, Name = "Euro Cargo Depo", ContactDetails = "contact@eurocargo.de | +49 30 000 0002", Region = "Europe" },
+                    new Client { Id = 3, Name = "Asendia Shipping Co", ContactDetails = "ops@aseshipping.com | +1 310 000 0003", Region = "America" }
                 );
 
                 modelBuilder.Entity<Contract>().HasData(
