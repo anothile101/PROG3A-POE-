@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Practice_assignment.Models
 {
-    public enum ContractStatus
+    public enum ContractStatus // Enum for contract status with default values
     {
         Draft,
         Active,
@@ -15,13 +15,13 @@ namespace Practice_assignment.Models
             public int Id { get; set; }
 
             [Required]
-            public int ClientId { get; set; }
+            public int ClientId { get; set; } // Foreign key to Client
 
-            [Required(ErrorMessage = "Start date is required.")]
+            [Required(ErrorMessage = "Start date is required.")] // Validation for required start date
             [DataType(DataType.Date)]
             public DateTime StartDate { get; set; }
 
-            [Required(ErrorMessage = "End date is required.")]
+            [Required(ErrorMessage = "End date is required.")] // Validation for required end date
             [DataType(DataType.Date)]
             public DateTime EndDate { get; set; }
 
@@ -32,7 +32,7 @@ namespace Practice_assignment.Models
             [StringLength(200)]
             public string ServiceLevel { get; set; } = string.Empty;
 
-            // File handling — path stored in DB, file on disk
+            // File handling path stored in DB, file on disk
             public string? SignedAgreementPath { get; set; }
             public string? SignedAgreementFileName { get; set; }
 

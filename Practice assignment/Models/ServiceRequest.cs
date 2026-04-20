@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Practice_assignment.Models
 {
-    public enum ServiceRequestStatus
+    public enum ServiceRequestStatus // Workflow states for service request
     {
         Pending,
         InProgress,
@@ -21,22 +21,21 @@ namespace Practice_assignment.Models
             [StringLength(1000)]
             public string Description { get; set; } = string.Empty;
 
-            /// <summary>
-            /// Cost in USD as entered by user
-            /// </summary>
+            
+            // Cost in USD as entered by user
             [Required]
             [Range(0.01, double.MaxValue, ErrorMessage = "Cost must be greater than zero.")]
             [Column(TypeName = "decimal(18,2)")]
             public decimal CostUsd { get; set; }
 
-            /// <summary>
-            /// Converted ZAR cost (saved after currency conversion)
-            /// </summary>
+            
+            // Converted ZAR cost that is saved after currency conversion
+           
             [Column(TypeName = "decimal(18,2)")]
             public decimal CostZar { get; set; }
 
             
-            /// Exchange rate used at time of creation
+            // Exchange rate used at time of creation
             
             [Column(TypeName = "decimal(18,6)")]
             public decimal ExchangeRateUsed { get; set; }
