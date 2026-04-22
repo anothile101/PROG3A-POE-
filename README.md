@@ -1,6 +1,6 @@
 # Global Logistics Management System (GLMS)
 # Overview
--The Global Logistics Management System is an enterprise-level ASP.NET Core MVC web application developed for TechMove Logistics.
+The Global Logistics Management System is an enterprise-level ASP.NET Core MVC web application developed for TechMove Logistics.
 It replaces a legacy system based on spreadsheets, emails, and manual processes with a modern, centralised platform.
 
 The system manages:
@@ -113,10 +113,10 @@ All tests pass successfully
 
 ---
 # Usage
-Create clients
-Create contracts with PDF upload
-Change contract status
-Create service requests
-View currency conversion
-Search and filter contracts
+- Create clients
+- Create contracts with PDF upload
+- Change contract status
+- Create service requests
+- View currency conversion
+- Search and filter contracts
 
